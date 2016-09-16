@@ -39,6 +39,9 @@
     - "{{ tomcat_applications }}"
     - "{{ default_webapps }}"
 
+# TODO add Psi-probe to this role
+- name: Add Psi-probe to each webapps subdir, very useful to have around
+
 - name: Ensure correct file/directory ownership for each tomcat application
   file: path=/usr/local/{{ item.app_name }} owner={{ item.app_name }} group={{ item.app_name }} recurse=yes state=directory
   with_items: "{{ tomcat_applications }}"
