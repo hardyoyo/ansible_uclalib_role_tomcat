@@ -5,7 +5,21 @@
 # chkconfig: - 90 10
 # description: Tomcat is a Java application Server.
 
+### BEGIN INIT INFO
+# Provides: a Tomcat instance
+# Required-Start: $network $syslog
+# Required-Stop: $network $syslog
+# Default-Start:
+# Default-Stop:
+# Short-Description: Start up the Tomcat server daemon
+# Description:       Tomcat is a Java application Server.
+#                    This service starts up the Tomcat server daemon.
+### END INIT INFO
+
 NAME=`/bin/basename $0`
+
+# if this is a symlink from rc#.d, the S## part is not useful, filter it out
+NAME=`/bin/sed 's/^S[0-9]*//g' <<< $NAME`
 
 # Source function library
 if [ -r /etc/sysconfig/${NAME} ] ; then
