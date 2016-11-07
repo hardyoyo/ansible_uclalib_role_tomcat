@@ -19,7 +19,8 @@
   user: name={{ item.app_name }} comment="{{ item.app_name }} User" shell=/bin/bash home=/usr/local/{{ item.app_name }}
   with_items: "{{ tomcat_applications }}"
 
-- include: setup_lvm.yml
+- name: Include tasks to set-up Logical Volume Filesystems
+  include: setup_lvm.yml
   when: use_lvm == "yes"
 
 - name: Create the CATALINA_BASE paths for each Tomcat application and set ownership
