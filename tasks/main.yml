@@ -112,7 +112,7 @@
 
 - name: Put in place the tomcat app server.xml file
   template:
-    src: "tomcat_server_xml.j2"
+    src: "tomcat{{ tomcat_major_version }}_server_xml.j2"
     dest: "/usr/local/{{ item.app_name }}/conf/server.xml"
     owner: "{{ item.app_name }}"
     group: "{{ item.app_name }}"
