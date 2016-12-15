@@ -17,6 +17,19 @@
     copy: "no"
   when: tomcat_path.stat.exists == False
 
+- name: Create tomcatapp group
+  group:
+    name: "tomcatapp"
+    state: "present"
+
+- name: Set ownership in CATALINA_HOME
+  file:
+    path: "/usr/local/apache-tomcat-{{ tomcat_version }}"
+    owner: "root"
+    group: "tomcatapp"
+    recurse: "yes"
+    state: "directory"
+
 - name: Create symbolic link for the CATALINA_HOME directory
   file:
     src: "/usr/local/apache-tomcat-{{ tomcat_version }}"
@@ -29,6 +42,7 @@
     comment: "{{ item.app_name }} User"
     shell: "/bin/bash"
     home: "/usr/local/{{ item.app_name }}"
+    groups: "tomcatapp"
   with_items: "{{ tomcat_applications }}"
 
 - name: Include tasks to set-up Logical Volume Filesystems
