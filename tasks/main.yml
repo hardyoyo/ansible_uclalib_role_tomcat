@@ -1,5 +1,10 @@
 ---
 
+- name: Install rsync
+  yum:
+    name: rsync
+    state: present
+
 - name: Determine if Tomcat needs to be downloaded/unarchived
   stat: path=/usr/local/apache-tomcat-{{ tomcat_version }}
   register: tomcat_path
