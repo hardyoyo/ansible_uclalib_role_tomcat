@@ -46,3 +46,10 @@ lv_size: 5G
 lvm_base_path: "/dev/mapper/vg_apps"
 
 use_lvm: yes
+
+# No default values for apache_vhost_ssl
+# Defined here in comments to show how to use in a playbook
+#apache_vhost_ssl:
+# cert_file_path:  /path/to/certificate.crt
+# cert_key_file_path: /path/to/certificate.key
+# cert_chain_file_path: /path/to/certificate_chain.crt
