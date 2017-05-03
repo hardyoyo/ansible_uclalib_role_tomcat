@@ -44,7 +44,7 @@ For each CATALINA_BASE tomcat app:
 
   * `tomcat_version` - defines the full version of tomcat to use (e.g. 7.0.67)
 
-  * `tomcat_applications` - defines the application name, shutdown port, and connector port for each application
+  * `tomcat_applications` - variable that instantiates the tomcat application list
     * `app_name` - name of tomcat web app (usually matches name of .war file)
     * `shut_port`- port number to use for tomcat shutdown port in server.xml
     * `conn_port` - port number to use for tomcat connection port in server.xml
@@ -64,6 +64,11 @@ For each CATALINA_BASE tomcat app:
   * `lv_size` - defines the size of the LVM logical volume
 
   * `lvm_base_path` - defines the path where the logical volumes are managed by the operating system
+
+  * `apache_vhost_ssl` - if the apache vhost uses SSL, use this to instantiate the certificate files list
+    * `cert_file_path` - defines the path to the SSL certificate
+    * `cert_key_file_path` - defines the path to the SSL certificates private key
+    * `cert_chain_file_path` - defines the path to the intermediate certificate chain file
 
 
   Sample format for defining tomcat web apps:
@@ -95,6 +100,7 @@ For each CATALINA_BASE tomcat app:
           shut_port: 8007
           conn_port: 8082
           rproxy_path: path2
+      use_lvm: "yes"
 
     roles:
       - { role: uclalib_role_java }
