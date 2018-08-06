@@ -30,8 +30,7 @@
 
   ProxyRequests Off
   <Proxy *>
-    Order deny,allow
-    Allow from all
+    Require all granted
   </Proxy>
 
   ProxyPreserveHost On
@@ -45,8 +44,7 @@
   ProxyPassReverse /{{ app.rproxy_path }} http://localhost:{{ app.conn_port }}/{{ app.rproxy_path }}
   ProxyTimeout 300
   <Location /{{ app.rproxy_path }}>
-    Order allow,deny
-    Allow from all
+    Require all granted
   </Location>
 
 {% endfor %}
